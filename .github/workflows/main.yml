@@ -1,0 +1,33 @@
+name: Scheduled Data Fetch
+
+on:
+  schedule:
+    # يعمل كل ساعة، في بداية الساعة
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run script
+        run: python main.py
+
+      - name: Commit and push if it changed
+        run: |
+          git config --global user.name "GitHub Action Bot"
+          git config --global user.email "action@github.com"
+          git add crypto_prices_master.csv
+          git commit -m "Update data via scheduled job" -a || echo "No changes to commit"
+          git push
