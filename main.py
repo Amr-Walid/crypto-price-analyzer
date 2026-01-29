@@ -41,7 +41,7 @@ def save_or_merge_data_to_csv (new_df) :
     if new_df is None or new_df.empty:
         print ("The new file is Empyty")
         return
-    filename = "crypto_prices.csv"
+    filename = "crypto_prices_master.csv"
     print (f"preparing to save data in {filename}")
     new_df['timestamputc'] = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     try:
