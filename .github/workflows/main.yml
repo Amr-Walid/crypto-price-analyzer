@@ -26,8 +26,8 @@ jobs:
 
       - name: Commit and push if it changed
         run: |
-          git config --global user.name "GitHub Action Bot"
-          git config --global user.email "action@github.com"
+          git config --global user.name "Amr-Walid"
+          git config --global user.email "10212022100768@stud.cu.edu.eg"
           git add crypto_prices_master.csv
           git commit -m "Update data via scheduled job" -a || echo "No changes to commit"
           git push
